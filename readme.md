@@ -25,3 +25,6 @@ This toolbox follows a data-driven approach for generating Spatiotemporal Tubes.
     * Meanwhile `AND`, `OR`, `NOT` can have any `STL` class reference inside it.
     * `TASK` classes like `REACH`, `AVOID`, `STAY` must be inside either `ALWAYS` or `EVENTUALLY` blocka.
 * `IMPLIES` and `UNTIL` are not ready for use as of now.
+-----------
+### Alternatively
+Just change the shebang of `Combined Toolbox/STL_STT_Toolbox.py`, add your own semantic and compile directly. 
