@@ -320,9 +320,9 @@ class STT_Solver():
         # --------------------------------------------------- 3D PLOT {X vs Y vs Z} --------------------------------------------------- #
         fig2 = plt.figure(2, figsize = (10, 8))
         dx = fig2.add_subplot(111, projection='3d')
-        dx.set_xlim(0, 15) ## dx.set_xlim(self.get_x_start(), self.get_x_finish())
-        dx.set_ylim(0, 15) ## dx.set_ylim(self.get_y_start(), self.get_y_finish())
-        dx.set_zlim(0, 15) ## dx.set_zlim(self.getStart(), self.getFinish())
+        dx.set_xlim(0, 4) ## dx.set_xlim(self.get_x_start(), self.get_x_finish())
+        dx.set_ylim(0, 4) ## dx.set_ylim(self.get_y_start(), self.get_y_finish())
+        dx.set_zlim(0, 3) ## dx.set_zlim(self.getStart(), self.getFinish())
         dx.set_xlabel('X Axis')
         dx.set_ylabel('Y Axis')
         dx.set_zlabel('Z Axis')
@@ -2034,19 +2034,32 @@ class UNTIL(STL):
 
 # semantic: ◊S ∧ (◊T1 ∨ ◊T2) ∧ ◊G ∧ (□ ¬O)
 
-stl_obj = STL(1, STT_Solver(5, 3, 0.5, 2.5, 3))
-specification = AND(1, EVENTUALLY(1, 0, 1, REACH(stl_obj.main, -1, 2, -1, 2, 1, 4)), 
-                        EVENTUALLY(1, 14, 15, REACH(stl_obj.main, 12, 15, 12, 15, 12, 15)),
+# stl_obj = STL(1, STT_Solver(5, 3, 0.5, 2.5, 3))
+# specification = AND(1, EVENTUALLY(1, 0, 1, REACH(stl_obj.main, -1, 2, -1, 2, 1, 4)), 
+#                         EVENTUALLY(1, 14, 15, REACH(stl_obj.main, 12, 15, 12, 15, 12, 15)),
+#                         OR(1, 
+#                             EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 9, 12, 6, 9, 6, 9)), 
+#                             EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 3, 6, 6, 9, 6, 9))
+#                         ),
+#                         ALWAYS(1, 0, 15, AVOID(stl_obj.main, 6, 9, 6, 11, 0, 15)),
+#                     )
+
+# specification.return_value = False
+# specification.call()
+# stl_obj.plotter()
+
+#------------------------------------------------------------------------------------#
+
+stl_obj = STL(1, STT_Solver(2, 3, 0.5, 0.2, 0.5))
+specification = AND(1, EVENTUALLY(1, 0, 1, REACH(stl_obj.main, 0, 0.6, 0, 0.6, 0.4, 1)), 
+                        EVENTUALLY(1, 14, 15, REACH(stl_obj.main, 2.6, 3.2, 2.6, 3.2, 2.6, 3.2)),
                         OR(1, 
-                            EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 9, 12, 6, 9, 6, 9)), 
-                            EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 3, 6, 6, 9, 6, 9))
+                            EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 0.8, 1.4, 1.4, 2, 1.4, 2)), 
+                            EVENTUALLY(1, 7, 8, REACH(stl_obj.main, 2, 2.6, 1.4, 2, 1.4, 2))
                         ),
-                        ALWAYS(1, 0, 15, AVOID(stl_obj.main, 6, 9, 6, 11, 0, 15)),
+                        ALWAYS(1, 0, 15, AVOID(stl_obj.main, 1.4, 2, 1.4, 2.4, 0, 3)),
                     )
 
 specification.return_value = False
 specification.call()
 stl_obj.plotter()
-
-#------------------------------------------------------------------------------------#
-
